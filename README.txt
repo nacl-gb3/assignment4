@@ -27,7 +27,7 @@ Build container:
 -----------------
 
 # TODO : Requirement 1
-docker build -t <> .
+docker build -t glb2354-assignment2:latest .
 
 
 Deploy application to Minikube:
