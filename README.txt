@@ -1,3 +1,7 @@
+name: Gary Bond
+eid: glb2354
+comments: n/a
+
 Setup
 -----
 Install Minikube
