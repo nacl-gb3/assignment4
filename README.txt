@@ -30,8 +30,8 @@ Run above steps from any terminal that you will use
 Build container:
 -----------------
 
-# TODO : Requirement 1
-docker build -t glb2354-assignment2:latest .
+# TODO : Requirement 2
+docker build -t glb2354-assignment4:latest .
 
 
 Deploy application to Minikube:
