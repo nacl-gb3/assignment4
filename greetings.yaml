@@ -15,7 +15,7 @@ spec:
       serviceAccount: greetings
       containers:
         - name: assignment2 
-          image: glb2354-assignment2:latest
+          image: glb2354-assignment4:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: GREETING

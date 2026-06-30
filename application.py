@@ -4,33 +4,49 @@ import json
 
 from kubernetes import client, config
 
+from prometheus_client import Counter
+from prometheus_flask_exporter import PrometheusMetrics
+
 app = Flask(__name__)
+
+# TODO: Requirement 1.1
+metrics = PrometheusMetrics(app)
+request_counter_p = Counter("custom_request_count", "App Request Count", ["endpoint"])
 
 
 @app.route("/")
 def hello():
+    # TODO: Requirement 1.2
+    request_counter_p.labels(endpoint="/").inc()
     return "Hello World!"
 
 
 @app.route("/greetings")
 def greetings():
+    # TODO: Requirement 1.2
+    request_counter_p.labels(endpoint="/greetings").inc()
     greeting = os.getenv("GREETING")
     return greeting
 
 
 @app.route("/listcontents")
 def listcontents():
-    fp = open("/hostfolder/filenames.txt","r")
+    # TODO: Requirement 1.2
+    request_counter_p.labels(endpoint="/listcontents").inc()
+    fp = open("/hostfolder/filenames.txt", "r")
     lines = fp.readlines()
     return lines
 
 
 @app.route("/getk8sobjects")
 def get_cluster_details():
+    # TODO: Requirement 1.2
+    request_counter_p.labels(endpoint="/getk8sobjects").inc()
+
     config.load_incluster_config()
 
     namespace = "default"
-    
+
     v1 = client.CoreV1Api()
     pods = v1.list_namespaced_pod(namespace)
 
@@ -56,8 +72,6 @@ def get_cluster_details():
     obj_to_return = json.dumps(output)
     return obj_to_return
 
-# TODO: Requirement 1
-
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host="0.0.0.0", port=5001)
