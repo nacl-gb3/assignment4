@@ -30,7 +30,7 @@ Run above steps from any terminal that you will use
 Build container:
 -----------------
 
-# TODO : Requirement 2
+# TODO : Requirement 2 (and 3)
 docker build -t glb2354-assignment4:latest .
 
 
@@ -38,6 +38,11 @@ Deploy application to Minikube:
 -------------------------------
 kubectl apply -f greetings.yaml
 
+Run Prometheus as a Docker container:
+-------------------------------------
+
+# TODO : Requirement 6
+docker run -d --name prometheus --network minikube -p 9090:9090 -v ./prometheus.yml:/etc/prometheus/prometheus.yaml prom/prometheus
 
 Try app endpoints:
 ------------------
@@ -66,6 +71,22 @@ Try app endpoints:
     curl $URL/greetings
     curl $URL/listcontents
     curl $URL/getk8sobjects
+
+
+Access Prometheus:
+------------------
+- In browser, open http://localhost:9090
+- Go to Status -> Target health and verify that your configured Target is up (green)
+- Go to Query -> check custom_request_count_total metric
+    - Type "custom_request_count_total" in the Query box and Execute
+    - Check the Graph view
+
+
+Experiment:
+-----------
+- As you hit the application endpoints, the counts maintained by the Prometheus
+counter should increase. You will be able to see the increasing counts in the
+Prometheus Graph view
 
 
 See Kubernetes resources:
