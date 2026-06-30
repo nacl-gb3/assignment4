@@ -42,7 +42,7 @@ Run Prometheus as a Docker container:
 -------------------------------------
 
 # TODO : Requirement 6
-docker run -d --name prometheus --network minikube -p 9090:9090 -v ./prometheus.yml:/etc/prometheus/prometheus.yaml prom/prometheus
+docker run -d --name prometheus --network minikube -p 9090:9090 -v ./prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 Try app endpoints:
 ------------------

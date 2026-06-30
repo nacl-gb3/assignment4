@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: greetings 
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: greetings
@@ -14,7 +14,7 @@ spec:
     spec:
       serviceAccount: greetings
       containers:
-        - name: assignment2 
+        - name: assignment4 
           image: glb2354-assignment4:latest
           imagePullPolicy: IfNotPresent
           env:
